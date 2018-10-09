@@ -12,10 +12,9 @@
   "module": "src/index.js",
   "scripts": {
     "clean": "rm -rf web dist",
-    "lint": "./node_modules/eslint/bin/eslint.js . --cache",
+    "lint": "./node_modules/eslint/bin/eslint.js .",
     "precommit-msg": "echo 'Pre-commit checks...' && exit 0",
     "dev": "npm run lint && webpack-dev-server --open --config webpack.config/dev.js",
-    "web": "npm run lint && webpack --config webpack.config/web.js",
     "dist": "npm run lint && webpack --config webpack.config/dist.js",
     "test": "jest --no-cache"
   },
@@ -30,7 +29,20 @@
       "^.+\\.js$": "babel-jest"
     }
   },
-  "dependencies": {},
+  "dependencies": {
+    "@types/cookie-parser": "^1.4.1",
+    "@types/csurf": "^1.9.35",
+    "@types/express": "^4.16.0",
+    "@types/mongoose": "^5.2.18",
+    "@types/morgan": "^1.7.35",
+    "@types/node": "^10.11.5",
+    "@types/pbkdf2": "^3.0.0",
+    "@types/uuid": "^3.4.4",
+    "cookie-parser": "^1.4.3",
+    "csurf": "^1.9.0",
+    "mongoose": "^5.3.2",
+    "morgan": "^1.9.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.1.0",
     "@babel/plugin-syntax-dynamic-import": "^7.0.0",
@@ -50,11 +62,22 @@
     "jest": "^21.1.0",
     "pre-commit": "^1.2.2",
     "style-loader": "^0.23.0",
+    "ts-loader": "^5.2.1",
+    "typescript": "^3.1.1",
+    "typescript-eslint-parser": "^20.0.0",
     "uglifyjs-webpack-plugin": "^2.0.1",
     "url-loader": "^1.1.1",
     "webpack": "^4.19.1",
     "webpack-cli": "^3.1.1",
     "webpack-dev-server": "^3.1.8"
   },
-  "keywords": ["oauth2","rfc6749","rfc7009","rfc7662","revoke","refresh token","token introspection"]
+  "keywords": [
+    "oauth2",
+    "rfc6749",
+    "rfc7009",
+    "rfc7662",
+    "revoke",
+    "refresh token",
+    "token introspection"
+  ]
 }

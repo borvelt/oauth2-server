@@ -3,7 +3,11 @@ const webpack = require('webpack')
 
 module.exports = {
   mode: 'development',
-  entry: { index: __dirname + '/../src/index.js' },
+  entry: { index: __dirname + '/../src/app.ts' },
+  node: {
+    fs: 'empty',
+    net: 'empty',
+  },
   module: {
     rules: [
       {
@@ -16,6 +20,14 @@ module.exports = {
             '@babel/plugin-transform-runtime',
             '@babel/plugin-syntax-dynamic-import',
           ],
+        },
+      },
+      {
+        test: /\.(ts)$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+        options: {
+          transpileOnly: true,
         },
       },
       {
@@ -43,15 +55,17 @@ module.exports = {
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
-      title: 'oauth2-server',
+      title: 'oauth2Server',
       template: __dirname + '/../src/template.html',
       inject: true,
     }),
   ],
   resolve: {
     alias: {},
+    extensions: ['.ts', '.js'],
   },
   devServer: {
+    proxy: {},
     stats: {
       colors: true,
     },

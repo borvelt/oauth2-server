@@ -29,6 +29,13 @@ module.exports = {
           ],
         },
       },
+      {
+        test: /\.tsx?$/,
+        loader: 'ts-loader',
+        options: {
+          transpileOnly: true,
+        },
+      },
     ],
   },
   plugins: [
@@ -39,5 +46,6 @@ module.exports = {
   ],
   resolve: {
     alias: {},
+    extensions: ['.ts', '.tsx', '.js'],
   },
 }
