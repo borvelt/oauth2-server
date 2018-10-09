@@ -71,7 +71,7 @@ app.use(
 )
 
 //set html files address
-app.set('views', __dirname + '/views')
+// app.set('views', __dirname + '/views')
 /*
  * this hook use for handle 404,
  * express js catch this if nobody handle the Request object

@@ -1,5 +1,7 @@
 import * as assert from "assert";
 import {Oauth2ErrorTypes} from "../../errors/Errors";
+import clientAuthorizationView from '../../../views/clientAuthorization'
+
 
 class AuthorizationEndpointMiddleware {
 
@@ -32,14 +34,14 @@ class AuthorizationEndpointMiddleware {
             if(request.body.client_authorization === 'yes') {
                 next();
             } else if (request.body.client_authorization === 'no') {
-                response.render('clientAuthorization.pug', {
+                response.render(clientAuthorizationView, {
                     pageTitle: 'Authorization Failed.',
                     userRejectClient: true,
                     client: response.locals.client,
                     requestedScopes: response.locals.scopes
                 });
             } else {
-                response.render('clientAuthorization.pug', {
+                response.render(clientAuthorizationView, {
                     pageTitle: 'Confirm Client Authorization',
                     client: response.locals.client,
                     csrfToken: request.csrfToken(),

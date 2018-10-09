@@ -1,14 +1,35 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const path = require('path')
 const webpack = require('webpack')
+// const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
 
 module.exports = {
-  mode: 'development',
+  mode: 'production',
   entry: { index: __dirname + '/../src/app.ts' },
   node: {
     fs: 'empty',
     net: 'empty',
   },
   externals: [/^[a-z\-0-9]+$/],
+  output: {
+    path: path.resolve(__dirname, '../web'),
+    filename: '[name].js',
+    chunkFilename: '[name].[contenthash].js',
+    publicPath: '/',
+  },
+  optimization: {
+    runtimeChunk: 'single',
+    splitChunks: {
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
+  },
   module: {
     rules: [
       {
@@ -58,28 +79,24 @@ module.exports = {
       },
     ],
   },
+  devtool: 'source-map',
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
+    new CleanWebpackPlugin(['web'], {
+      root: path.join(__dirname, '..'),
+    }),
     new HtmlWebpackPlugin({
       title: 'Oauth2Server',
       template: __dirname + '/../src/template.html',
       inject: true,
     }),
+    // new UglifyJsPlugin({ sourceMap: true }),
+    new webpack.HashedModuleIdsPlugin(),
+    new webpack.SourceMapDevToolPlugin({
+      filename: '[file].map',
+    }),
   ],
   resolve: {
     alias: {},
     extensions: ['.ts', '.js', '.pug'],
-  },
-  devServer: {
-    proxy: {},
-    stats: {
-      colors: true,
-    },
-    watchOptions: {
-      ignored: /node_modules/,
-    },
-    compress: false,
-    port: 9000,
-    hot: true,
   },
 }
