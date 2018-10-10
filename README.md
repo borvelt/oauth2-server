@@ -38,10 +38,10 @@ For make final version run `npm run make` but while developing codes I have used
 
 You should just run `npm run dev` to run three command concurrently:
 * server files: 
-    All of ts and pug files will transpile to js with ts-loader will pack with webpack.These codes are server side codes.
+    All of ts files will transpile to js with `ts-loader` will pack with `webpack`.These codes are server side codes.
+    Pug files will load with `pug-loader` , this files will pack with other codes, _AMAZING???_
 * public files:
-    Public files or client side code will pack with webpack and will transpile with babel-loader browser friendly js codes.So you feel free to write complex javascript codes.
-
+    Public files or client side code will pack with webpack and will transpile with babel-loader browser friendly js codes. So you feel free to write complex javascript codes.
 * nodemon:
   This used to serve server side code but have some features, one of featuers is watch files.I love it.
 
