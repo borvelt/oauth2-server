@@ -1,0 +1,15 @@
+doctype html
+html(lang="en")
+    head
+        title= pageTitle
+    body
+        a(href="http://localhost:3000/oauth2/authorize?response_type=token" +
+        "&client_id=123456789" +
+        "&scope=home_ctrl+change_ref_temp+change_oven_temp+turn_on_off_washer" +
+        "&redirect_uri=http://localhost:3000/homectrl/kitchen&state=state") get kitchen access
+        br
+        hr
+        a(href="http://localhost:3000/oauth2/authorize?response_type=token" +
+        "&client_id=987654321" +
+        "&scope=home_ctrl+view_CCTV_backyard+view_CCTV_yard+turn_on_off_AC&" +
+        "redirect_uri=http://localhost:3000/homectrl/other&state=state") get other access

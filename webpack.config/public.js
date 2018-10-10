@@ -1,9 +1,17 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const webpack = require('webpack')
+const path = require('path')
 
 module.exports = {
-  mode: 'development',
-  entry: { index: __dirname + '/../src/index.js' },
+  mode: 'production',
+  entry: {
+    index: path.join(__dirname, '..', 'src', 'public', 'index.js'),
+  },
+  output: {
+    path: path.join(__dirname, '..', 'dist', 'public'),
+    filename: '[name].js',
+    chunkFilename: '[name].public.oauth2Server.js',
+    globalObject: 'this',
+    libraryTarget: 'umd',
+  },
   module: {
     rules: [
       {
@@ -16,6 +24,14 @@ module.exports = {
             '@babel/plugin-transform-runtime',
             '@babel/plugin-syntax-dynamic-import',
           ],
+        },
+      },
+      {
+        test: /\.(ts)$/,
+        loader: 'ts-loader',
+        exclude: /node_modules/,
+        options: {
+          transpileOnly: true,
         },
       },
       {
@@ -40,26 +56,9 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      title: 'oauth2-server',
-      template: __dirname + '/../src/template.html',
-      inject: true,
-    }),
-  ],
+  plugins: [],
   resolve: {
     alias: {},
-  },
-  devServer: {
-    stats: {
-      colors: true,
-    },
-    watchOptions: {
-      ignored: /node_modules/,
-    },
-    compress: false,
-    port: 9000,
-    hot: true,
+    extensions: ['.ts', '.js'],
   },
 }

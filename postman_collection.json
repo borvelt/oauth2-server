@@ -1,0 +1,268 @@
+{
+	"variables": [],
+	"info": {
+		"name": "fanavard",
+		"_postman_id": "6e83d8f2-9b33-49f5-55cc-246ac6cfe223",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Dynamic Client Registration",
+			"request": {
+				"url": "localhost:3000/oauth2/clients/registration",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"client_secret\": \"12345\",\n\t\"client_name\": \"kitchen controller\",\n\t\"redirect_uri\": [\"http://localhost:3000/homectrl/other\"],\n\t\"grant_types\": [\"authorization_code\", \"refresh_token\", \"implicit\", \"client_credentials\"],\n\t\"response_types\": [\"code\", \"token\"],\n\t\"scope\": [\"home_ctrl\", \"view_CCTV_backyard\", \"view_CCTV_yard\", \"turn_on_off_AC\"],\n\t\"preAuthorization\": false\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Authoziation Endpoint",
+			"request": {
+				"url": "http://localhost:3000/oauth2/authorize?response_type=code&client_id=80687086042300841&scope=home_ctrl&redirect_uri=http://localhost:3000/homectrl/other&state=state",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "client_authorization",
+							"value": "yes",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "AccessToken Endpoint",
+			"request": {
+				"url": "localhost:3000/oauth2/token",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-formasdasds-urlencodesd",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic NDg0MTcwNjQ5Mzk5OTc0MToxMjM0NQ==",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "code",
+							"value": "f6447128-1158-4d0a-a1c4-482b901cca3e",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "redirect_uri",
+							"value": "http://localhost:2000/redirect",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Token Introspection",
+			"request": {
+				"url": "localhost:3000/oauth2/introspection",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer 6e1299a1-df2b-4e61-9826-b6a1c4ab08d3",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "96e1afaf-00f8-461c-8184-e97408db9c8d",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "token_type_hint",
+							"value": "access_token",
+							"type": "text",
+							"enabled": false
+						},
+						{
+							"key": "token_type_hint",
+							"value": "refresh_token",
+							"type": "text",
+							"enabled": false
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Revoke Endpoint",
+			"request": {
+				"url": "localhost:3000/oauth2/revoke",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Basic ODA2ODcwODYwNDIzMDA4NDE6MTIzNDU=",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "589522b6-fa77-44ec-8246-1600534c3275",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "token_type_hint",
+							"value": "refresh_token",
+							"type": "text",
+							"enabled": false
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "refreshToken",
+			"request": {
+				"url": "localhost:3000/oauth2/token",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic MTIwNzcxMTcxMDAyOTk3NDE6MTIzNDU=",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "refresh_token",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "refresh_token",
+							"value": "361da340-b23d-11e6-9d3a-b70c87366ed4",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "scope",
+							"value": "clientinfo user_name",
+							"type": "text",
+							"enabled": false
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Client Credentials",
+			"request": {
+				"url": "localhost:3000/oauth2/token",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"description": ""
+					},
+					{
+						"key": "Authorization",
+						"value": "Basic ODA2ODcwODYwNDIzMDA4NDE6MTIzNDU=",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "client_credentials",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "scope",
+							"value": "home_ctrl",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "",
+							"value": "",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

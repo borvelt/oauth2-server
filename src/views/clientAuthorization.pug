@@ -1,0 +1,26 @@
+doctype html
+html(lang="en")
+    head
+        title= pageTitle
+    body
+        if userRejectClient
+            h1 User Reject Client: &nbsp;
+                span=client.clientName
+
+            a(href="http://localhost:3000/homectrl") Home Control
+        else
+            form(action="", method="post")
+                input(type="hidden", name="_csrf", value=csrfToken)
+                h1 Authorization
+                p This Client:&nbsp;
+                    span=client.clientName
+                p Wants To Access Following Scope(s):
+                #container.col
+                each scope in requestedScopes
+                    li= scope.name
+                        ol=scope.description
+
+                p Do You Agree?
+                button(type=submit, value="yes", name="client_authorization") Yes
+                span &nbsp;|&nbsp;
+                button(type=submit, value="no", name="client_authorization") No
