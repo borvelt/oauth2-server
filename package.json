@@ -19,7 +19,7 @@
     "make:server": "npm run lint && webpack --config webpack.config/server.js",
     "make:public": "npm run lint && webpack --config webpack.config/public.js",
     "initialize": "npm run lint && npm run clean && npm run make:public && npm run make:server && node dist/initializer.js",
-    "serve": "npm run clean && concurrently \"npm run make:dev-public\" \"npm run make:dev-server\" \"nodemon www.js --watch dist\"",
+    "dev": "npm run clean && concurrently \"npm run make:dev-public\" \"npm run make:dev-server\" \"nodemon www.js --watch dist\"",
     "make": "npm run clean && npm run make:server && npm run make:public",
     "test": "jest --no-cache"
   },
