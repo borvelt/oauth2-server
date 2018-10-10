@@ -24,6 +24,12 @@ As always we should install node modules, go to oauth2-server directory and run 
 
 Your code is ready now you should install mongodb.
 
+### mongodb?
+Yes, I have made this server with mongodb and mongoose, because it's easy to work with json in this database,When you want to assing scopes to clients and read and write scopes and access roles I think it's better to use document-oriented database, ofcuse for huge scale!!!.
+
+### mongoose ODM
+ODM is absolutly required, I've made some schema and work with them.
+
 For first time to initialize your database you should run `npm run intialize` command.
 Initialization script will run from `src/utils/initialize.ts`, if you want to understand what will import to your database see this file.
 
