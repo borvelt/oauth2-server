@@ -11,14 +11,16 @@
   "main": "dist/index.js",
   "module": "src/index.js",
   "scripts": {
-    "clean": "rm -rf web dist",
+    "clean": "rm -rf dist",
     "lint": "./node_modules/eslint/bin/eslint.js .",
     "precommit-msg": "echo 'Pre-commit checks...' && exit 0",
-    "make:server": "npm run lint && webpack --watch --progress --config webpack.config/server.js",
-    "make:public": "npm run lint && webpack --watch --progress --config webpack.config/public.js",
-    "make": "rm -rf dist && npm run make:server && npm run make:public",
-    "initialize": "npm run lint && npm run make:server && npm run make:public && node dist/initializer.js",
-    "serve": "concurrently \"npm run make:public\" \"npm run make:server\" \"nodemon www.js --watch dist\"",
+    "make:dev-server": "npm run lint && webpack --watch --progress --config webpack.config/server.js",
+    "make:dev-public": "npm run lint && webpack --watch --progress --config webpack.config/public.js",
+    "make:server": "npm run lint && webpack --config webpack.config/server.js",
+    "make:public": "npm run lint && webpack --config webpack.config/public.js",
+    "initialize": "npm run lint && npm run clean && npm run make:public && npm run make:server && node dist/initializer.js",
+    "serve": "npm run clean && concurrently \"npm run make:dev-public\" \"npm run make:dev-server\" \"nodemon www.js --watch dist\"",
+    "make": "npm run clean && npm run make:server && npm run make:public",
     "test": "jest --no-cache"
   },
   "nodemonConfig": {
