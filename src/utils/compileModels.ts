@@ -10,7 +10,7 @@ import Errors from '../oauth2/errors/schemas'
 /*
  * Here We Compile Our Models From Our Schema.
  * */
-let Models: any = {
+const Models: any = {
   Client: Model.createInstanceFor(new Client({ versionKey: false })),
   User: Model.createInstanceFor(new User({ versionKey: false })),
   Scope: Model.createInstanceFor(new Scope({ versionKey: false })),

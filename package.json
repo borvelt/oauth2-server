@@ -14,8 +14,8 @@
     "clean": "rm -rf web dist",
     "lint": "./node_modules/eslint/bin/eslint.js .",
     "precommit-msg": "echo 'Pre-commit checks...' && exit 0",
-    "dev": "npm run lint && webpack-dev-server --open --config webpack.config/dev.js",
-    "web": "npm run lint && webpack --config webpack.config/web.js",
+    "initialize": "npm run lint && webpack --config webpack.config/server.js && node dist/initializer.js",
+    "serve": "npm run lint && webpack --config webpack.config/server.js && node src/index.js",
     "test": "jest --no-cache"
   },
   "pre-commit": {

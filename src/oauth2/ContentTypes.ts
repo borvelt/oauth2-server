@@ -17,7 +17,7 @@ class ContentTypesMiddleware {
             response.locals.contentType = ContentTypes.JSON;
             next();
         } catch (e) {
-            let error = request.app.Oauth2Error.find(Oauth2ErrorTypes.InvalidRequest);
+            let error = request.app.get('Oauth2Error').find(Oauth2ErrorTypes.InvalidRequest);
             response.status(error.statusCode).json(error.json);
         }
     }
@@ -31,7 +31,7 @@ class ContentTypesMiddleware {
             response.locals.contentType = ContentTypes.WWWForm;
             next();
         } catch (e) {
-            let error = request.app.Oauth2Error.find(Oauth2ErrorTypes.InvalidRequest);
+            let error = request.app.get('Oauth2Error').find(Oauth2ErrorTypes.InvalidRequest);
             response.status(error.statusCode).json(error.json);
         }
     }

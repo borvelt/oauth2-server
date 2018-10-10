@@ -24,7 +24,7 @@ class AuthorizationCodeMiddleware {
                 next();
             } catch (e) {
                 response.locals.authorizationCode = null;
-                let error = request.app.Oauth2Error.find(Oauth2ErrorTypes.InvalidRequest);
+                let error = request.app.get('Oauth2Error').find(Oauth2ErrorTypes.InvalidRequest);
                 response.status(error.statusCode).json(error.json);
             }
         })
@@ -42,7 +42,7 @@ class AuthorizationCodeMiddleware {
             assert.equal(request.body.redirect_uri, response.locals.authorizationCode.redirectUri);
             next();
         } catch (e) {
-            let error = request.app.Oauth2Error.find(Oauth2ErrorTypes.InvalidRequest);
+            let error = request.app.get('Oauth2Error').find(Oauth2ErrorTypes.InvalidRequest);
             response.status(error.statusCode).json(error.json);
         }
     }

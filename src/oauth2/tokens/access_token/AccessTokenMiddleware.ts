@@ -17,7 +17,7 @@ class AccessTokenMiddleware {
                 response.locals.headerAccessToken = token;
                 next();
             } catch (e) {
-                let error = request.app.Oauth2Error.find(Oauth2ErrorTypes.InvalidGrant);
+                let error = request.app.get('Oauth2Error').find(Oauth2ErrorTypes.InvalidGrant);
                 response.status(error.statusCode).json(error.json);
             }
         })

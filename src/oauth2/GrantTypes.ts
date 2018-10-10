@@ -29,7 +29,7 @@ class GrantTypesMiddleware {
             assert.notEqual(response.locals.client.grantTypes.indexOf(response.locals.grantType), -1);
             next();
         } catch (e) {
-            let error = request.app.Oauth2Error.find(Oauth2ErrorTypes.UnSupportedGrantType);
+            let error = request.app.get('Oauth2Error').find(Oauth2ErrorTypes.UnSupportedGrantType);
             response.status(error.statusCode).json(error.json);
         }
     }
@@ -54,7 +54,7 @@ class GrantTypesMiddleware {
             assert.notEqual(request.body.grant_type, GrantTypes.Implicit);
             next();
         } catch (e) {
-            let error = request.app.Oauth2Error.find(Oauth2ErrorTypes.UnAuthorizedClient);
+            let error = request.app.get('Oauth2Error').find(Oauth2ErrorTypes.UnAuthorizedClient);
             response.status(error.statusCode).json(error.json);
         }
     }

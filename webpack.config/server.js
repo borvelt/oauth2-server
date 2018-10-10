@@ -1,9 +1,19 @@
-const HtmlWebpackPlugin = require('html-webpack-plugin')
-const webpack = require('webpack')
+const CleanWebpackPlugin = require('clean-webpack-plugin')
+const path = require('path')
 
 module.exports = {
-  mode: 'development',
-  entry: { index: __dirname + '/../src/app.ts' },
+  mode: 'production',
+  entry: {
+    oauth2Server: path.join(__dirname, '..', 'src', 'app.ts'),
+    initializer: path.join(__dirname, '..', 'src', 'utils', 'initializer.ts'),
+  },
+  output: {
+    path: path.join(__dirname, '..', 'dist'),
+    filename: '[name].js',
+    chunkFilename: '[name].oauth2Server.js',
+    libraryTarget: 'umd',
+  },
+  target: 'node',
   node: {
     fs: 'empty',
     net: 'empty',
@@ -32,9 +42,13 @@ module.exports = {
         },
       },
       {
-        test: /\.(pug)$/,
-        loader: 'pug-loader',
-        options: {},
+        test: /\.pug$/,
+        loaders: [
+          {
+            loader: 'pug-loader',
+            options: { pretty: true },
+          },
+        ],
       },
       {
         test: /\.css$/,
@@ -59,27 +73,12 @@ module.exports = {
     ],
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new HtmlWebpackPlugin({
-      title: 'Oauth2Server',
-      template: __dirname + '/../src/template.html',
-      inject: true,
+    new CleanWebpackPlugin(['dist'], {
+      root: path.join(__dirname, '..'),
     }),
   ],
   resolve: {
     alias: {},
     extensions: ['.ts', '.js', '.pug'],
-  },
-  devServer: {
-    proxy: {},
-    stats: {
-      colors: true,
-    },
-    watchOptions: {
-      ignored: /node_modules/,
-    },
-    compress: false,
-    port: 9000,
-    hot: true,
   },
 }

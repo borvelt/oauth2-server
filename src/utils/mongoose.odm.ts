@@ -2,8 +2,9 @@ import * as Mongoose from "mongoose";
 
 class Connection {
     public static establish(): Mongoose.Connection {
-        Mongoose.connect("mongodb://127.0.0.1:27017/oauth2")
-        let db: Mongoose.Connection = Mongoose.connection
+        Mongoose.set('useCreateIndex', true)
+        Mongoose.connect("mongodb://127.0.0.1:27017/oauth2", { useNewUrlParser: true })
+        const db: Mongoose.Connection = Mongoose.connection
         db.on('error', console.error.bind(console, 'connection error:'));
         return db;
     }

@@ -2,4 +2,5 @@
 
 _oauth2 implementation - rfc6749, rfc7009, rfc7662_
 
-*Write your own project README*
+## Usage
+This library based on Oauth2 rfc 6749, clone and run it.

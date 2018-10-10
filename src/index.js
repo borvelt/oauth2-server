@@ -3,7 +3,7 @@
 /**
  * Module dependencies.
  */
-var app = require('./app')
+var app = require('../dist/oauth2Server').default
 var debug = require('debug')('mosway:server')
 var http = require('http')
 

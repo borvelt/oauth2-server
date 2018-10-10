@@ -1,23 +1,38 @@
 import { Router } from 'express'
-import homectrl from '../views/homectrl/homectrl'
-import showAccess from '../views/homectrl/show_access'
-
 let router: Router = Router()
 
 router.use('/$', (request, response, next) => {
-  response.render(homectrl, {
-    pageTitle: 'Test Home Control',
-  })
+  import('../views/homectrl/homectrl.pug')
+    .then(success =>
+      response.send(
+        success({
+          pageTitle: 'Test Home Control',
+        }),
+      ),
+    )
+    .catch(error => console.error(error))
 })
 router.use('/kitchen', (request, response, next) => {
-  response.render(showAccess, {
-    pageTitle: 'kitchen controls',
-  })
+  import('../views/homectrl/show_access.pug')
+    .then(success =>
+      response.send(
+        success({
+          pageTitle: 'kitchen controls',
+        }),
+      ),
+    )
+    .catch(error => console.error(error))
 })
 router.use('/other', (request, response, next) => {
-  response.render(showAccess, {
-    pageTitle: 'other house controls',
-  })
+  import('../views/homectrl/show_access.pug')
+    .then(success =>
+      response.send(
+        success({
+          pageTitle: 'other house controls',
+        }),
+      ),
+    )
+    .catch(error => console.error(error))
 })
 
 export default router

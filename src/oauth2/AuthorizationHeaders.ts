@@ -19,7 +19,7 @@ class AuthorizationHeaderMiddleware {
             response.locals.authorizationHeader = header;
             next();
         } catch (e) {
-            let error = request.app.Oauth2Error.find(Oauth2ErrorTypes.InvalidRequest);
+            let error = request.app.get('Oauth2Error').find(Oauth2ErrorTypes.InvalidRequest);
             response.status(error.statusCode).json(error.json);
         }
     }
@@ -37,7 +37,7 @@ class AuthorizationHeaderMiddleware {
             };
             next();
         } catch (e) {
-            let error = request.app.Oauth2Error.find(Oauth2ErrorTypes.InvalidRequest);
+            let error = request.app.get('Oauth2Error').find(Oauth2ErrorTypes.InvalidRequest);
             response.status(error.statusCode).json(error.json);
 
         }
@@ -58,7 +58,7 @@ class AuthorizationHeaderMiddleware {
             };
             next();
         } catch (e) {
-            let error = request.app.Oauth2Error.find(Oauth2ErrorTypes.InvalidGrant);
+            let error = request.app.get('Oauth2Error').find(Oauth2ErrorTypes.InvalidGrant);
             response.status(error.statusCode).json(error.json);
         }
 
@@ -88,7 +88,7 @@ class AuthorizationHeaderMiddleware {
         } catch (e) {
             response.locals.clientCredential = null;
             response.locals.client = null;
-            let error = request.app.Oauth2Error.find(Oauth2ErrorTypes.InvalidClient);
+            let error = request.app.get('Oauth2Error').find(Oauth2ErrorTypes.InvalidClient);
             response.status(error.statusCode).json(error.json);
         }
     }

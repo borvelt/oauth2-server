@@ -114,7 +114,7 @@ class TokenEndpoint {
                 try {
                     assert.notEqual($this.$response.locals.refreshToken, null);
                 } catch (e) {
-                    let error = request.app.Oauth2Error.find(Oauth2ErrorTypes.InvalidRequest);
+                    let error = request.app.get('Oauth2Error').find(Oauth2ErrorTypes.InvalidRequest);
                     $this.$response.status(error.statusCode).json(error.json);
                     return;
                 }
