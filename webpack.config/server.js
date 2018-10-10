@@ -45,7 +45,6 @@ module.exports = {
         loaders: [
           {
             loader: 'pug-loader',
-            options: { pretty: true },
           },
         ],
       },

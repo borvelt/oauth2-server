@@ -4,8 +4,7 @@ import {Oauth2ErrorTypes} from "../../errors/Errors";
 
 class AuthorizationEndpointMiddleware {
 
-
-    /*
+  /*
     * is authorization code redirect URI the same as requested redirect_uri
     * */
     public static validateRedirectUri(request, response, next: Function) {
