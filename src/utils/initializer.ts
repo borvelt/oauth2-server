@@ -132,7 +132,7 @@ function initialize() {
                 },
               ],
               userId: result.id,
-              preAuthorization: false,
+              preAuthorization: true,
             }).save()
           })
           console.log('clients insertion done')

@@ -20,7 +20,7 @@ Connection.establish()
 /*
  * Compile models, all of models should compile just one time.
  * */
-import './utils/compileModels'
+// import './utils/compileModels'
 /*
  * Express Start!
  * */
@@ -28,7 +28,7 @@ const app = express()
 /*
 * Use Static path.
 * */
-app.use('/public', express.static(path.join(__dirname, 'public')))
+app.use(express.static('dist/public'))
 /*
  * Set Pug template engine, (jade renamed to pug.)
  * */

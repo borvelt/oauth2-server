@@ -14,8 +14,11 @@
     "clean": "rm -rf web dist",
     "lint": "./node_modules/eslint/bin/eslint.js .",
     "precommit-msg": "echo 'Pre-commit checks...' && exit 0",
-    "initialize": "npm run lint && webpack --config webpack.config/server.js && node dist/initializer.js",
-    "serve": "npm run lint && webpack --config webpack.config/server.js && node src/index.js",
+    "make:server": "npm run lint && webpack --config webpack.config/server.js",
+    "make:public": "npm run lint && webpack --config webpack.config/public.js",
+    "make": "rm -rf dist && npm run make:server && npm run make:public",
+    "initialize": "npm run lint && npm run make:server && npm run make:public && node dist/initializer.js",
+    "serve": "node www.js",
     "test": "jest --no-cache"
   },
   "pre-commit": {
@@ -41,9 +44,9 @@
     "@types/uuid": "^3.4.4",
     "cookie-parser": "^1.4.3",
     "csurf": "^1.9.0",
+    "jquery": "^3.3.1",
     "mongoose": "^5.3.2",
-    "morgan": "^1.9.1",
-    "pug-loader": "^2.4.0"
+    "morgan": "^1.9.1"
   },
   "devDependencies": {
     "@babel/core": "^7.1.0",
@@ -64,6 +67,7 @@
     "jest": "^21.1.0",
     "pre-commit": "^1.2.2",
     "pug": "^2.0.3",
+    "pug-loader": "^2.4.0",
     "style-loader": "^0.23.0",
     "ts-loader": "^5.2.1",
     "typescript": "^3.1.1",

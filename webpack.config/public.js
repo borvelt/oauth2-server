@@ -3,21 +3,15 @@ const path = require('path')
 module.exports = {
   mode: 'production',
   entry: {
-    oauth2Server: path.join(__dirname, '..', 'src', 'app.ts'),
-    initializer: path.join(__dirname, '..', 'src', 'utils', 'initializer.ts'),
+    index: path.join(__dirname, '..', 'src', 'public', 'index.js'),
   },
   output: {
-    path: path.join(__dirname, '..', 'dist'),
+    path: path.join(__dirname, '..', 'dist', 'public'),
     filename: '[name].js',
-    chunkFilename: '[name].server.oauth2Server.js',
+    chunkFilename: '[name].public.oauth2Server.js',
+    globalObject: 'this',
     libraryTarget: 'umd',
   },
-  target: 'node',
-  node: {
-    fs: 'empty',
-    net: 'empty',
-  },
-  externals: [/^[a-z\-0-9]+$/],
   module: {
     rules: [
       {
@@ -41,19 +35,30 @@ module.exports = {
         },
       },
       {
-        test: /\.pug$/,
-        loaders: [
+        test: /\.css$/,
+        use: [
           {
-            loader: 'pug-loader',
-            options: { pretty: true },
+            loader: 'style-loader',
+            options: {},
+          },
+          {
+            loader: 'css-loader',
+            options: {},
           },
         ],
+      },
+      {
+        test: /\.(png|jpg|gif|svg|eot|ttf|woff|woff2)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+        },
       },
     ],
   },
   plugins: [],
   resolve: {
     alias: {},
-    extensions: ['.ts', '.js', '.pug'],
+    extensions: ['.ts', '.js'],
   },
 }

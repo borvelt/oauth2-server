@@ -33,24 +33,24 @@ class AuthorizationEndpointMiddleware {
             if(request.body.client_authorization === 'yes') {
                 next();
             } else if (request.body.client_authorization === 'no') {
-                import('../../../views/clientAuthorization').then(success=>response.send(success({
+                import('../../../views/clientAuthorization')
+                  .then(clientAuthorization=>response.send(clientAuthorization({
                     pageTitle: 'Authorization Failed.',
                     userRejectClient: true,
                     client: response.locals.client,
                     requestedScopes: response.locals.scopes
-                }))).catch(error=>console.error(error))
+                  }))).catch(error=>console.error(error))
             } else {
-              import('../../../views/clientAuthorization').then(success=>response.send(success({
+              import('../../../views/clientAuthorization')
+                .then(clientAuthorization=>response.send(clientAuthorization({
                   pageTitle: 'Confirm Client Authorization',
                   client: response.locals.client,
                   csrfToken: request.csrfToken(),
                   requestedScopes: response.locals.scopes
-              }))).catch(error=>console.error(error))
+                }))).catch(error=>console.error(error))
             }
         }
     }
-
-
 }
 
 export default AuthorizationEndpointMiddleware
