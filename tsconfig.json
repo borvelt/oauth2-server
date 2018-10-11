@@ -3,9 +3,14 @@
     "rootDir": "src",
     "module": "commonjs",
     "sourceMap": true,
-    "target": "es2018"
+    "pretty": true,
+    "target": "es2018",
+    "noUnusedParameters": false,
+    "noUnusedLocals": true,
   },
   "exclude": [
     "node_modules"
   ] 
 }
+
+

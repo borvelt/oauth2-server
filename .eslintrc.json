@@ -7,11 +7,13 @@
     "jest/globals": true
   },
   "plugins": [
-    "jest"
+    "jest",
+    "prettier"
   ],
   "extends": [
     "eslint:recommended",
-    "plugin:jest/recommended"
+    "plugin:jest/recommended",
+    "plugin:prettier/recommended"
   ],
   "parser": "typescript-eslint-parser",
   "parserOptions": {
@@ -21,6 +23,7 @@
     "codeFrame": false
   },
   "rules": {
+    "prettier/prettier": "error",
     "jest/no-disabled-tests": "warn",
     "jest/no-focused-tests": "error",
     "jest/no-identical-title": "error",

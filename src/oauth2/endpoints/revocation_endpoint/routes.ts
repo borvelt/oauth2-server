@@ -8,7 +8,7 @@ import RefreshTokenMiddleware from '../../tokens/refresh_token/refreshTokenMiddl
 import RequestBodyMiddleware from '../../RequestBody'
 import { Router } from 'express'
 
-let router: any = Router()
+const router: any = Router()
 
 /*
  * Place your routes about token endpoint.

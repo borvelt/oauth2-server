@@ -7,7 +7,7 @@ import { UsersMiddleware } from '../../../users/usersMiddleware'
 import AuthorizationEndPoint from './authorizationEndpointClass'
 import AuthorizationEndpointMiddleware from './authorizationEndpointMiddleware'
 
-let router: any = Router()
+const router: any = Router()
 
 router.get(
   '/',

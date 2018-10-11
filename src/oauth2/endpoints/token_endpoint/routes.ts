@@ -11,7 +11,7 @@ import ScopesMiddleware from '../../scopes/scopesMiddleware'
 import AuthorizationCode from '../../tokens/authorization_code/authorizationCodeClass'
 import RefreshToken from '../../tokens/refresh_token/refreshTokenClass'
 
-let router: any = Router()
+const router: any = Router()
 
 /*
  * Place your routes about token endpoint.

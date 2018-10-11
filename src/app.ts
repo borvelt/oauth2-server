@@ -1,18 +1,18 @@
-import { Request, Response } from 'express'
-import { Connection } from './utils/mongoose.odm'
-import Models from './utils/compileModels'
+import * as express from 'express'
 import { Oauth2Error } from './oauth2/errors/Errors'
 import routes from './routes'
+import Models from './utils/compileModels'
+import { Connection } from './utils/mongoose.odm'
 
 /*
  * Path module is used for handling and transforming file paths.
  * */
-import * as path from 'path'
 import * as assert from 'assert'
-import * as logger from 'morgan'
-import * as cookieParser from 'cookie-parser'
 import * as bodyParser from 'body-parser'
-import * as express from 'express'
+import * as cookieParser from 'cookie-parser'
+import * as logger from 'morgan'
+
+const a = 20
 /*
  * Establish a database connection.
  * */
@@ -63,21 +63,21 @@ Models.Error.find((error, result) => {
  * */
 app.use(
   '/',
-  (request, response, next: Function) => {
+  (request, response, next: () => void) => {
     response.header('X-Frame-Options', 'SAMEORIGIN')
     next()
   },
   routes,
 )
 
-//set html files address
+// set html files address
 // app.set('views', __dirname + '/views')
 /*
  * this hook use for handle 404,
  * express js catch this if nobody handle the Request object
  * */
-app.use((req: Request, res: Response, next: Function) => {
-  let err: any = new Error('Not Found')
+app.use((req: express.Request, res: express.Response, next: (e) => void) => {
+  const err: any = new Error('Not Found')
   err.status = 404
   next(err)
 })
@@ -91,21 +91,35 @@ try {
     'development',
     'Application Is Not In Development Mode',
   )
-  app.use((err: any, req: Request, res: Response, next: Function) => {
-    res.status(err.status || 500)
-    res.json({
-      message: err.message,
-      error: err,
-    })
-  })
+  app.use(
+    (
+      err: any,
+      req: express.Request,
+      res: express.Response,
+      next: () => void,
+    ) => {
+      res.status(err.status || 500)
+      res.json({
+        message: err.message,
+        error: err,
+      })
+    },
+  )
 } catch (e) {
-  app.use((err: any, req: Request, res: Response, next: Function) => {
-    res.status(err.status || 500)
-    res.json({
-      message: err.message,
-      error: {},
-    })
-  })
+  app.use(
+    (
+      err: any,
+      req: express.Request,
+      res: express.Response,
+      next: () => void,
+    ) => {
+      res.status(err.status || 500)
+      res.json({
+        message: err.message,
+        error: {},
+      })
+    },
+  )
 }
 
 /*

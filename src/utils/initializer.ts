@@ -12,7 +12,7 @@ function initialize() {
       isDefault: true,
     }).save()
 
-    //kitchen scopes
+    // kitchen scopes
     new Models.Scope({
       name: 'change_ref_temp',
       description:
@@ -30,7 +30,7 @@ function initialize() {
         "Change Your Washer Status, You Can Turn Washer On Only If It's Full Or 1/2.",
     }).save()
 
-    //other
+    // other
     new Models.Scope({
       name: 'view_CCTV_backyard',
       description: 'View CCTV That Installed In BackYard',
@@ -55,16 +55,16 @@ function initialize() {
     HashMaker.make('#user', secret => {
       new Models.User({
         username: 'borvelt@gmail.com',
-        secret: secret,
+        secret,
         age: 23,
         firstName: 'Mohamad',
         lastName: 'Taheri',
       }).save((error, result) => {
         try {
-          HashMaker.make('#client', secret => {
+          HashMaker.make('#client', csecret => {
             new Models.Client({
               clientId: '123456789',
-              clientSecret: secret,
+              clientSecret: csecret,
               clientName: 'homectrl Kitchen',
               redirectUri: ['http://localhost:3000/homectrl/kitchen'],
               grantTypes: [
@@ -100,7 +100,7 @@ function initialize() {
             }).save()
             new Models.Client({
               clientId: '987654321',
-              clientSecret: secret,
+              clientSecret: csecret,
               clientName: 'homectrl OtherThings',
               redirectUri: ['http://localhost:3000/homectrl/other'],
               grantTypes: [

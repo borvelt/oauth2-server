@@ -1,10 +1,10 @@
-import { Router } from 'express'
-import oauth2Routes from './oauth2/routes'
+import { Router, Request, Response } from 'express'
 import homectrlRoutes from './homectrl/routes'
+import oauth2Routes from './oauth2/routes'
 
-let router: Router = Router()
+const router: Router = Router()
 
-router.use('/$', (request, response) => {
+router.use('/$', (request: Request, response: Response) => {
   response.redirect('/homectrl')
 })
 router.use('/oauth2', oauth2Routes)

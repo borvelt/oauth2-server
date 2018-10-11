@@ -1,5 +1,5 @@
 class AccessTokenType {
-    public static Bearer = 'Bearer';
+  public static Bearer = 'Bearer'
 }
 
 export default AccessTokenType

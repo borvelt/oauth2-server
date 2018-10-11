@@ -1,5 +1,5 @@
 import { Router } from 'express'
-let router: Router = Router()
+const router: Router = Router()
 
 router.use('/$', (request, response) => {
   import('../views/homectrl/homectrl.pug')

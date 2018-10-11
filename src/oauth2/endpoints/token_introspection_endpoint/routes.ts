@@ -6,7 +6,7 @@ import AccessTokenMiddleware from '../../tokens/access_token/AccessTokenMiddlewa
 import { TokenTypesMiddleware } from '../../TokenTypes'
 import RequestBodyMiddleware from '../../RequestBody'
 import RefreshTokenMiddleware from '../../tokens/refresh_token/refreshTokenMiddleware'
-let router: any = Router()
+const router: any = Router()
 
 /*
  * Place your routes about token endpoint.

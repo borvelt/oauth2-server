@@ -4,7 +4,7 @@ import { ContentTypesMiddleware } from '../../ContentTypes'
 import { UsersMiddleware } from '../../../users/usersMiddleware'
 import ScopesMiddleware from '../../scopes/scopesMiddleware'
 
-let router: Router = Router()
+const router: Router = Router()
 
 /*
  * Place your routes about clients_endpoint.
