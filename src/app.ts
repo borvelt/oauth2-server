@@ -12,7 +12,6 @@ import * as bodyParser from 'body-parser'
 import * as cookieParser from 'cookie-parser'
 import * as logger from 'morgan'
 
-const a = 20
 /*
  * Establish a database connection.
  * */
